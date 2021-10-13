@@ -1,0 +1,6 @@
+#+title: Inventory kernel modules 
+
+Policy to inventory Linux kernel modules.
+
+Provides inventory for modules loaded, unused and counts of each.
+

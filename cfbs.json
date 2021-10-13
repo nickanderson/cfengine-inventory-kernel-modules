@@ -1,0 +1,13 @@
+{
+    "modules": {
+        "inventory-kernel-modules": {
+            "description": "Inventory Linux kernel modules (loaded, unused and counts of each).",
+            "tags": ["security", "compliance"],
+            "version": "1.0.0",
+            "steps": [
+                "copy policy/main.cf services/inventory-kernel-modules/main.cf",
+                "json cfbs/def.json def.json"
+            ]
+        }
+    }
+}

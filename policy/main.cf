@@ -1,0 +1,57 @@
+body file control
+{
+  namespace => "nickanderson";
+}
+bundle agent inventory_kernel_modules
+# @brief Inventory Linux kernel modules
+# @inventory Used linux kernel modules
+# @inventory Unused linux kernel modules
+# @inventory Number linux kernel modules loaded
+# @inventory Number linux kernel modules unused
+{
+  vars:
+    default:_stdlib_path_exists_lsmod::
+      "lsmod_output" string => "$(sys.statedir)/lsmod";
+
+      "lsmod"
+        data => data_readstringarray( $(lsmod_output),
+                                      "^Module[^\n]*",
+                                      " ",
+                                      inf,
+                                      inf),
+        if => and( not( isvariable( lsmod )),
+                   fileexists( $(lsmod_output) ));
+
+      "modules" slist => getindices( lsmod ), if => not( isvariable( modules ));
+
+      "used_module[$(modules)]"
+        string => "$(modules)",
+        if => not( strcmp( "0", "$(lsmod[$(modules)])" )),
+        meta => { "inventory", "attribute_name=Used linux kernel modules" };
+
+      "unused_module[$(modules)]"
+        string => "$(modules)",
+        if => strcmp( "0", "$(lsmod[$(modules)])" ),
+        meta => { "inventory", "attribute_name=Unused linux kernel modules" };
+
+      "num_modules"
+        int => length( modules ),
+        meta => { "inventory", "attribute_name=Number linux kernel modules loaded" };
+
+      "num_unused"
+        int => length( getindices( unused_module ) ),
+        meta => { "inventory", "attribute_name=Number linux kernel moduels unused" };
+
+  commands:
+    default:_stdlib_path_exists_lsmod::
+      "$(paths.lsmod) > $(lsmod_output)"
+        contain => default:in_shell;
+}
+body file control
+{
+  namespace => "default";
+}
+bundle agent __main__
+{
+    methods: "nickanderson:inventory_kernel_modules";
+}
