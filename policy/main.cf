@@ -10,6 +10,13 @@ bundle agent inventory_kernel_modules
 # @inventory Number linux kernel modules unused
 {
   vars:
+    !default:_stdlib_path_exists_lsmod::
+      # lsmod not in paths.cf, so let's add this to our well known paths via meta tag
+      "path[lsmod]"
+        string => "/sbin/lsmod",
+        meta => { "paths.cf" },
+        if => isexecutable( "/sbin/lsmod" );
+
     default:_stdlib_path_exists_lsmod::
       "lsmod_output" string => "$(sys.statedir)/lsmod";
 
