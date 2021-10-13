@@ -4,3 +4,11 @@ Policy to inventory Linux kernel modules.
 
 Provides inventory for modules loaded, unused and counts of each.
 
+* Screenshots                                                        :ATTACH:
+:PROPERTIES:
+:ID:       d4a6a842-6824-4015-ac57-2b1d13285046
+:END:
+
+#+DOWNLOADED: file:///home/nickanderson/Pictures/screenshots/2021-10-13_12-01-03.png @ 2021-10-13 12:01:39
+[[attachment:2021-10-13_12-01-39_2021-10-13_12-01-03.png]]
+
