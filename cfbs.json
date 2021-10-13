@@ -4,6 +4,8 @@
             "description": "Inventory Linux kernel modules (loaded, unused and counts of each).",
             "tags": ["security", "compliance"],
             "version": "1.0.0",
+            "repo": "https://github.com/nickanderson/cfengine-inventory-kernel-modules",
+            "commit": "58a0070c4b831ee9d1c878594d04cd1777089309",
             "steps": [
                 "copy policy/main.cf services/inventory-kernel-modules/main.cf",
                 "json cfbs/def.json def.json"
