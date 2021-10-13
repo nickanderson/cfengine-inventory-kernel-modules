@@ -12,7 +12,7 @@ bundle agent inventory_kernel_modules
   vars:
     !default:_stdlib_path_exists_lsmod::
       # lsmod not in paths.cf, so let's add this to our well known paths via meta tag
-      "path[lsmod]"
+      "path[lsmod]" -> { "CFE-3790" }
         string => "/sbin/lsmod",
         meta => { "paths.cf" },
         if => isexecutable( "/sbin/lsmod" );
