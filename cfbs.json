@@ -5,7 +5,7 @@
             "tags": ["security", "compliance"],
             "version": "1.0.0",
             "repo": "https://github.com/nickanderson/cfengine-inventory-kernel-modules",
-            "commit": "58a0070c4b831ee9d1c878594d04cd1777089309",
+            "commit": "01ac9e1e6dbc1e8223a3ba0bc25c8a679c3155d0",
             "steps": [
                 "copy policy/main.cf services/inventory-kernel-modules/main.cf",
                 "json cfbs/def.json def.json"
